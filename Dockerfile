@@ -21,13 +21,11 @@ FROM debian:bullseye-slim
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Copy the built binary from the builder stage to the target image
-COPY --from=builder /app/https-server /usr/local/bin/https-server
-
-# Ensure the binary has execute permissions
-RUN chmod +x /usr/local/bin/https-server
+COPY --from=builder /app/https-server .
+COPY --from=builder /app/configs/config.toml configs/config.toml
 
 # Expose the application port (assuming your Go service runs on port 8080)
-EXPOSE 8080
+EXPOSE 8443
 
 # Command to run the binary
-CMD ["/usr/local/bin/https-server"]
+ENTRYPOINT ["./https-server"]
