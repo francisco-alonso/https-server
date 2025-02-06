@@ -5,10 +5,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
   build:
 
@@ -34,8 +30,4 @@ jobs:
 
     - name: Generate coverage summary
       run: go tool cover -func=coverage.out | tee coverage-summary.txt
-
-    - name: Comment PR with Coverage Report
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        file: coverage-summary.txt
+      

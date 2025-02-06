@@ -4,7 +4,11 @@ on:
   pull_request:
     branches:
       - main
-      
+
+permissions:
+  pull-requests: write
+  contents: read
+  
 jobs:
   test:
     name: Run Tests & Coverage
@@ -31,4 +35,7 @@ jobs:
       - name: Comment PR with Coverage Report
         uses: thollander/actions-comment-pull-request@v2
         with:
-          file: coverage-summary.txt
+          filePath: coverage-summary.txt
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mode: upsert
+          create_if_not_exists: true
