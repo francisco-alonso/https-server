@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: https-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: https-server
+  template:
+    metadata:
+      namespace: https-server-namespace
+      labels:
+        app: https-server
+    spec:
+      containers:
+      - name: https-server
+        image: fraanaalonso/https-server:latest
+        ports:
+        - containerPort: 8443
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/configs
+          readOnly: true
+        - name: tls-volume
+          mountPath: /etc/https-server/certs
+          readOnly: true
+      volumes:
+      - name: config-volume
+        configMap:
+          name: https-server-config
+      - name: tls-volume
+        secret:
+          secretName: https-server-tls

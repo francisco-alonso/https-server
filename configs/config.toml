@@ -1,0 +1,10 @@
+[server]
+port = "8443"
+# In a real-world scenario these paths point to a secure volume or vault mount.
+cert_file = "/etc/https-server/certs/cert.pem"
+key_file = "/etc/https-server/certs/key.pem"
+
+[[routes]]
+path = "/health"
+method = "GET"
+handler = "HealthHandler"

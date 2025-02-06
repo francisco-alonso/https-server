@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: https-server-config
+data:
+  config.toml: |
+    [server]
+    port = "8443"
+    cert_file = "/etc/https-server/certs/cert.pem"
+    key_file = "/etc/https-server/certs/key.pem"
+
+    [[routes]]
+    path = "/health"
+    method = "GET"
+    handler = "HealthHandler"
