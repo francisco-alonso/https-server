@@ -8,9 +8,3 @@ key_file = "/etc/https-server/certs/key.pem"
 path = "/health"
 method = "GET"
 handler = "HealthHandler"
-
-# Additional routes can be defined similarly:
-# [[routes]]
-# path = "/users"
-# method = "POST"
-# handler = "UsersHandler"
