@@ -68,10 +68,10 @@ kubectl apply -f deployments/kubernetes/configmap.yaml
 
 - Apply Secret
 
-It contains current certificate and key encoded in base64.
+It should contains your certificate and key encoded in base64.
 Please, update this fields according to your certificate and private key PEM files.
 
-Once done it, you can apply the config as follows:
+Once you finish the encoding, update both `cert.pem` and `key.pem` values. Then, you can apply the config as follows:
 
 ```
 kubectl apply -f deployments/kubernetes/secret.yaml
