@@ -18,13 +18,4 @@ spec:
         - name: mqtt
           image: eclipse-mosquitto:latest
           ports:
-            - containerPort: 1883   # Standard MQTT port
-            - containerPort: 9001   # MQTT over WebSockets (if needed)
-          # Optionally, you can mount a custom configuration file:
-          # volumeMounts:
-          #   - name: mosquitto-conf
-          #     mountPath: /mosquitto/config/mosquitto.conf
-      # volumes:
-      #   - name: mosquitto-conf
-      #     configMap:
-      #       name: mosquitto-config
+            - containerPort: 1883   # Standard MQTT
