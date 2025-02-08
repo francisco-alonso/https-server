@@ -113,8 +113,12 @@ https-server   ClusterIP   10.111.17.234   <none>        8443/TCP   24h
 meaning you can test connection, via for example port forwarding as
 
 ```
-kubectl port-forward svc/https-service 8443:8443
+kubectl port-forward svc/https-server 8443:8443
 curl -k https://localhost:8443/health
+
+or
+
+curl.exe -4 -k https://127.0.0.1:8443/health
 ```
 
 - Stop running deployment, services and minikube
@@ -123,4 +127,11 @@ curl -k https://localhost:8443/health
 kubectl delete deployment https-server
 kubectl delete service https-server
 minikube stop
+```
+
+- Debug Pod
+
+```
+kubectl get pods
+kubectl exec -it <pod-name> -- /bin/sh
 ```
